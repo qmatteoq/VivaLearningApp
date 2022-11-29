@@ -1,0 +1,56 @@
+﻿@inherits LearningProvidersBase
+@page "/learningProviders"
+@using Microsoft.Graph;
+
+
+<h3>Content Providers</h3>
+
+@if (providers != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var provider in providers)
+            {
+                <tr>
+                    <td>@provider.Id</td>
+                    <td>@provider.DisplayName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h3>Loading...</h3>   
+}
+
+@if (contents != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Url</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var content in contents)
+            {
+                <tr>
+                    <td>@content.Title</td>
+                    <td>@content.ContentWebUrl</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <p>
+        <button @onclick="CreateNewLearningContent">Add new content</button>
+    </p>
+}

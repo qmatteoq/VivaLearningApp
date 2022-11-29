@@ -1,0 +1,34 @@
+﻿@inherits NewLearningContentBase
+@page "/newLearningContent/{learningProviderId}"
+
+<h3>New Learning Content for @LearningProviderId</h3>
+
+<EditForm Model="@learningContentModel" OnValidSubmit="@HandleSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <p>
+        <div>External Id</div>
+        <div><InputText id="externalId" @bind-Value="learningContentModel.ExternalId" /></div>
+    </p>
+    <p>
+        <div>Title</div>
+        <div><InputText id="title" @bind-Value="learningContentModel.Title" /></div>
+    </p>
+
+    <p>
+        <div>Content URL</div>
+        <div><InputText id="contentUrl" @bind-Value="learningContentModel.ContentWebUrl" /></div>
+    </p>
+
+    <p>
+        <div>Language</div>
+        <div><InputText id="longLogoLight" @bind-Value="learningContentModel.LanguageTag" /></div>
+    </p>
+
+    <p>
+        <button type="submit">Create</button>
+    </p>
+
+</EditForm>
+
