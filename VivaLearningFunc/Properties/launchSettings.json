@@ -1,9 +1,0 @@
-{
-  "profiles": {
-    "VivaLearningFunc": {
-      "commandName": "Project",
-      "commandLineArgs": "--port 7096",
-      "launchBrowser": false
-    }
-  }
-}
