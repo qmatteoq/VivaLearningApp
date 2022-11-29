@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using VivaLearningFunction.Services;
 
@@ -12,12 +13,14 @@ namespace VivaLearningFunction
         private readonly ILogger<ApiFunction> _logger;
         private readonly ICsvService _csvService;
         private readonly IMicrosoftGraphService _graphService;
-        
-        public TimerFunction(ILogger<ApiFunction> log, ICsvService csvService, IMicrosoftGraphService graphService)
+        private readonly IConfiguration _configuration;
+
+        public TimerFunction(ILogger<ApiFunction> log, ICsvService csvService, IMicrosoftGraphService graphService, IConfiguration configuration)
         {
             _logger = log;
             _csvService = csvService;
             _graphService = graphService;
+            _configuration = configuration;
         }
 
         [FunctionName("TimerFunction")]
@@ -26,7 +29,7 @@ namespace VivaLearningFunction
         {
             _logger.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
 
-            string learningProviderId = Environment.GetEnvironmentVariable("LearningProviderId");
+            string learningProviderId = _configuration["Values:LearningProviderId"];
 
             await _graphService.AcquireAccessTokenAsync();
 

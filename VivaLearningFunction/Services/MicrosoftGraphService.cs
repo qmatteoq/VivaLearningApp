@@ -49,12 +49,6 @@ namespace VivaLearningFunction.Services
 
         }
 
-        public async Task<IList<User>> GetUsers()
-        {
-            var response = await graphClient.Users.Request().GetAsync();
-            return response.CurrentPage;
-        }
-
         public async Task<IList<LearningContent>> GetLearningContentAsync(string id)
         {
             string baseUrl = graphClient.EmployeeExperience.LearningProviders.RequestUrl;
