@@ -10,6 +10,5 @@ namespace VivaLearningFunction.Services
         Task AcquireAccessTokenAsync();
         Task AddLearningContent(string providerId, LearningContentModel learningContent);
         Task<IList<LearningContent>> GetLearningContentAsync(string id);
-        Task<IList<User>> GetUsers();
     }
 }
