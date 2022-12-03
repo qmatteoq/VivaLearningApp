@@ -3,7 +3,13 @@
 @using Microsoft.Graph;
 
 
-<h3>Content Providers</h3>
+<h3>Learning Provider</h3>
+
+<p>
+    <strong>Tenant Id of the customer</strong>
+    <input type="text" @bind="tenantId" />
+    <button @onclick="LoadProvider">Load provider</button>
+</p>
 
 @if (providers != null)
 {
@@ -25,10 +31,16 @@
         </tbody>
     </table>
 }
-else
+else @if (providers == null)
 {
-    <h3>Loading...</h3>   
+    <h3>Loading...</h3>
 }
+else @if (providers.Count == 0)
+{
+    <p>You don't have any custom learning provider</p>
+    <p><a href="/newLearningProvider">Click here to create one</a></p>
+}
+
 
 @if (contents != null)
 {

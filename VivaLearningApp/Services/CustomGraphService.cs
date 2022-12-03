@@ -21,13 +21,14 @@ namespace VivaLearningApp.Services
             this.consentHandler = consentHandler;
         }
 
-        public async Task AcquireAccessTokenAsync()
+        public async Task AcquireAccessTokenAsync(string tenantId)
         {
             var scopes = new string[] { ".default" };
 
             var aadConfig = configuration.GetSection("AzureAd");
             var client = ConfidentialClientApplicationBuilder.Create(aadConfig["ClientId"])
-                .WithTenantId(aadConfig["TenantId"])
+                //.WithTenantId(aadConfig["TenantId"])
+                .WithTenantId(tenantId)
                 .WithClientSecret(aadConfig["ClientSecret"]).Build();
 
             var token = await client.AcquireTokenForClient(scopes).ExecuteAsync();

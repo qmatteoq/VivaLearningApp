@@ -15,17 +15,24 @@ namespace VivaLearningApp.Pages
 
         public IList<LearningProvider> providers = new List<LearningProvider>();
         public IList<LearningContent> contents = null;
-
-        protected async override Task OnInitializedAsync()
-        {
-            await graphService.AcquireAccessTokenAsync();
-            providers = await graphService.GetLearningProvidersAsync();
-            contents = await graphService.GetLearningContentAsync(providers?.FirstOrDefault().Id);
-        }
+        public string tenantId;
 
         public void CreateNewLearningContent()
         {
             navigationManager.NavigateTo($"/newLearningContent/{providers?.FirstOrDefault().Id}");
+        }
+
+        public async Task LoadProvider()
+        {
+            if (!string.IsNullOrEmpty(tenantId))
+            {
+                await graphService.AcquireAccessTokenAsync(tenantId);
+                providers = await graphService.GetLearningProvidersAsync();
+                if (providers != null && providers.Count > 0)
+                {
+                    contents = await graphService.GetLearningContentAsync(providers?.FirstOrDefault().Id);
+                }
+            }
         }
     }
 }

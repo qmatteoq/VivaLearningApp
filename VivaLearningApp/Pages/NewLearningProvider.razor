@@ -1,0 +1,46 @@
+﻿@inherits NewLearningProviderBase
+@page "/newLearningProvider"
+
+<h3>New learning provider</h3>
+
+<div>
+    <EditForm Model="@learningProviderModel" OnValidSubmit="@HandleSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <p>
+            <div>Name</div>
+            <div><InputText id="displayName" @bind-Value="learningProviderModel.DisplayName" /></div>
+        </p>
+
+        <p>
+            <div>Square Logo - Light Theme</div>
+            <div><InputText id="squareLogoLight" @bind-Value="learningProviderModel.SquareLogoLight" /></div>
+        </p>
+
+        <p>
+            <div>Long Logo - Light Theme</div>
+            <div><InputText id="longLogoLight" @bind-Value="learningProviderModel.LongLogoLight" /></div>
+        </p>
+
+        <p>
+            <div>Square Logo - Dark Theme</div>
+            <div><InputText id="squareLogoDark" @bind-Value="learningProviderModel.SquareLogoDark" /></div>
+        </p>
+
+        <p>
+            <div>Square Logo - Dark Theme</div>
+            <div><InputText id="longLogoDark" @bind-Value="learningProviderModel.LongLogoDark" /></div>
+        </p>
+
+        <p>
+            <button type="submit">Create</button>
+        </p>
+
+    </EditForm>
+
+    @if (!string.IsNullOrEmpty(learningProviderId))
+    {
+        <p>The provider has been created successfully. Its id is @learningProviderId</p>
+    }
+</div>
