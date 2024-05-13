@@ -49,6 +49,7 @@ else @if (providers.Count == 0)
             <tr>
                 <th>Title</th>
                 <th>Url</th>
+                <th>Assignments</th>
             </tr>
         </thead>
         <tbody>
@@ -57,6 +58,7 @@ else @if (providers.Count == 0)
                 <tr>
                     <td>@content.Title</td>
                     <td>@content.ContentWebUrl</td>
+                    <td><button type="button" @onclick="(() => AddAssignment(content.Id))">Add assignment</button></td>
                 </tr>
             }
         </tbody>

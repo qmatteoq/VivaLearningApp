@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.Graph;
 using VivaLearningApp.Models;
 using VivaLearningApp.Services;
 

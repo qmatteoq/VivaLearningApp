@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.Graph;
+using Microsoft.Graph.Models;
 using VivaLearningApp.Services;
 
 namespace VivaLearningApp.Pages
@@ -22,11 +22,16 @@ namespace VivaLearningApp.Pages
             navigationManager.NavigateTo($"/newLearningContent/{providers?.FirstOrDefault().Id}");
         }
 
+        public void AddAssignment(string learningContentId)
+        {
+            navigationManager.NavigateTo($"/addAssignment?learningContentId={learningContentId}&learningProviderId={providers?.FirstOrDefault().Id}");
+        }
+
         public async Task LoadProvider()
         {
             if (!string.IsNullOrEmpty(tenantId))
             {
-                await graphService.AcquireAccessTokenAsync(tenantId);
+                graphService.AcquireApplicatonAccessToken(tenantId);
                 providers = await graphService.GetLearningProvidersAsync();
                 if (providers != null && providers.Count > 0)
                 {

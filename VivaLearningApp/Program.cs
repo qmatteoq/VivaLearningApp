@@ -4,7 +4,7 @@ using Microsoft.Identity.Web.UI;
 using VivaLearningApp.Data;
 using VivaLearningApp.Services;
 
-var builder = Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args);
 
 var initialScopes = builder.Configuration["DownstreamApi:Scopes"]?.Split(' ') ?? builder.Configuration["MicrosoftGraph:Scopes"]?.Split(' ');
 
@@ -27,7 +27,6 @@ builder.Services.AddAuthorization(options =>
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor()
     .AddMicrosoftIdentityConsentHandler();
-builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddScoped<ICustomGraphService, CustomGraphService>();
 
 var app = builder.Build();

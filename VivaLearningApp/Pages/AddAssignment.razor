@@ -1,0 +1,25 @@
+﻿@inherits AddAssignmentBase
+@page "/addassignment"
+
+
+<PageTitle>Add assignment</PageTitle>
+
+<EditForm Model="@learningAssignmentModel" OnValidSubmit="@HandleSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <p>
+        <div>User mail</div>
+        <div><InputText id="userMail" @bind-Value="learningAssignmentModel.UserMail" /></div>
+    </p>
+
+    <p>
+        <div>Due date</div>
+        <div><InputDate id="dueDate" @bind-Value="learningAssignmentModel.DueDate" /></div>
+    </p>
+
+    <p>
+        <button type="submit">Assign</button>
+    </p>
+
+</EditForm>
