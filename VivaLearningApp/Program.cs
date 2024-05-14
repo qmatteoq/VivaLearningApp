@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
-using VivaLearningApp.Data;
 using VivaLearningApp.Services;
 
 var builder = WebApplication.CreateBuilder(args);

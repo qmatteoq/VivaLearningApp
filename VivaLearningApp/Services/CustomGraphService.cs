@@ -1,5 +1,6 @@
 ﻿using Microsoft.Graph;
 using Microsoft.Identity.Web;
+
 using Azure.Identity;
 using Microsoft.Graph.Models;
 
@@ -57,16 +58,16 @@ namespace VivaLearningApp.Services
                 IsCourseActivitySyncEnabled = true
             };
 
-            try
-            {
-                var learningProvider = await delegatedClient.EmployeeExperience.LearningProviders.PostAsync(provider);
-                return learningProvider;
-            }
-            catch (Exception ex)
-            {
-                consentHandler.HandleException(ex);
-                return null;
-            }
+        try
+        {
+            var learningProvider = await delegatedClient.EmployeeExperience.LearningProviders.PostAsync(provider);
+            return learningProvider;
+        }
+        catch (Exception ex)
+        {
+            consentHandler.HandleException(ex);
+            return null;
+        }
         }
 
         public async Task<IList<LearningContent>?> GetLearningContentAsync(string id)
