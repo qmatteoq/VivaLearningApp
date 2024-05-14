@@ -21,7 +21,7 @@ namespace VivaLearningApp.Services
             this.delegatedClient = delegatedClient;
         }
 
-        public void AcquireApplicatonAccessToken(string tenantId)
+        public void AcquireApplicationAccessToken(string tenantId)
         {
             var aadConfig = configuration.GetSection("AzureAd");
             var clientId = aadConfig["ClientId"];
@@ -70,21 +70,22 @@ namespace VivaLearningApp.Services
         }
         }
 
-        public async Task<IList<LearningContent>?> GetLearningContentAsync(string id)
+        public async Task<IList<LearningContent>?> GetLearningContentAsync(string providerId)
         {
-            var response = await applicationClient.EmployeeExperience.LearningProviders[id].LearningContents.GetAsync();
+            var response = await applicationClient.EmployeeExperience.LearningProviders[providerId].LearningContents.GetAsync();
             return response.Value;
         }
 
         public async Task AddLearningContent(string providerId, string contentId, string title, string contentUrl, string language)
         {
-            await applicationClient.EmployeeExperience.LearningProviders[providerId].LearningContentsWithExternalId(contentId).PatchAsync(new LearningContent
+            var learningContent = new LearningContent
             {
+                ExternalId = contentId,
                 Title = title,
                 ContentWebUrl = contentUrl,
-                ExternalId = contentId,
                 LanguageTag = language
-            });
+            };
+            await applicationClient.EmployeeExperience.LearningProviders[providerId].LearningContentsWithExternalId(contentId).PatchAsync(learningContent);
         }
 
         public async Task AddAssignment(string providerId, string contentId, string userId, DateTimeTimeZone dueDateTime)

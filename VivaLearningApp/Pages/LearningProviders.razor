@@ -5,12 +5,6 @@
 
 <PageTitle>Learning Provider</PageTitle>
 
-<p>
-    <strong>Tenant Id of the customer</strong>
-    <input type="text" @bind="tenantId" />
-    <button @onclick="LoadProvider">Load provider</button>
-</p>
-
 @if (providers != null)
 {
     <table class="table">
@@ -18,14 +12,16 @@
             <tr>
                 <th>Id</th>
                 <th>Name</th>
+                <th>Content</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var provider in providers)
             {
                 <tr>
-                    <td>@provider.Id</td>
+                    <td><a href="#" @onclick="() => LoadContent(provider.Id)" @onclick:preventDefault>@provider.Id</a></td>
                     <td>@provider.DisplayName</td>
+                    <td><button @onclick="() => CreateNewLearningContent(provider.Id)">Add content</button></td>
                 </tr>
             }
         </tbody>
@@ -63,8 +59,4 @@ else @if (providers.Count == 0)
             }
         </tbody>
     </table>
-
-    <p>
-        <button @onclick="CreateNewLearningContent">Add new content</button>
-    </p>
 }

@@ -5,7 +5,7 @@ namespace VivaLearningApp.Services
 {
     public interface ICustomGraphService
     {
-        void AcquireApplicatonAccessToken(string tenantId);
+        void AcquireApplicationAccessToken(string tenantId);
         Task<LearningProvider> CreateLearningProviderAsync(string name, string squareLogoLight, string logoLogoLight, string squareLogoDark, string longLogoDark);
         Task<IList<LearningContent>?> GetLearningContentAsync(string id);
         Task<IList<LearningProvider>> GetLearningProvidersAsync();
