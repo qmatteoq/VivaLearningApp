@@ -7,7 +7,7 @@
     <WebProject_DirectoryAccessLevelKey>0</WebProject_DirectoryAccessLevelKey>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Azure.Identity" Version="1.11.3" />
+    <PackageReference Include="Azure.Identity" Version="1.11.4" />
     <PackageReference Include="Microsoft.Identity.Web" Version="2.18.1" />
     <PackageReference Include="Microsoft.Identity.Web.GraphServiceClient" Version="2.18.1" />
     <PackageReference Include="Microsoft.Identity.Web.UI" Version="2.18.1" />
